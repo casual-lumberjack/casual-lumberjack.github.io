@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Oblique Panorama</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables */
+        :root {
+            --primary-color: #2c3e50; 
+            --accent-color: #16a085;  
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset */
+        @page {
+            size: 17in 11in; /* Tabloid Landscape */
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            font-size: 12pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid (Landscape) */
+        .landscape-container {
+            display: grid;
+            grid-template-rows: 65% 35%;
+            height: 10in; /* Tabloid Landscape height minus margins */
+            width: 16in;  /* Tabloid Landscape width minus margins */
+            margin: auto;
+            gap: 20pt;
+        }
+
+        /* 2.4 Image Asset Styling */
+        .hero-map {
+            grid-row: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center top;
+            border-bottom: 6pt solid var(--primary-color);
+        }
+
+        /* 2.5 Typography & Content Blocks */
+        .content-block {
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: 35% 65%;
+            gap: 30pt;
+        }
+
+        .overview-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            font-size: 24pt;
+            text-transform: uppercase;
+            margin-bottom: 12pt;
+            border-bottom: 3pt solid var(--accent-color);
+            padding-bottom: 6pt;
+        }
+
+        .overview {
+            text-align: justify;
+            font-size: 11pt;
+        }
+
+        /* 2.6 Skill Table Styling */
+        .table-col {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10.5pt;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8pt;
+            border-bottom: 1pt solid #ddd;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-size: 11.5pt;
+        }
+        
+        td:first-child {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--accent-color);
+            width: 22%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="landscape-container">
+        
+        <!-- 3.1 Hero Image -->
+        <img class="hero-map" src="./img/panorama.png" alt="Oblique Panorama Project">
+        
+        <!-- 3.2 Textual Content & Skills Grid -->
+        <div class="content-block">
+            
+            <div class="overview-col">
+                <h1>Oblique Panorama</h1>
+                <div class="overview">
+                    <p>The Oblique Panorama project stands as the capstone evaluation for the Visualizing Terrain course with a postcard style view of Western Brook Pond in Gros Morne National Park. Diverging radically from traditional orthographic mapping, this project required the creation of highly realistic, oblique-view terrain maps simulating a physical camera lens interacting with a vast geographic landscape.</p>
+                    <br>
+                    <p>The complexity is defined by its rigorous, multi-software pipeline. Massive environmental datasets (Landsat, LandCover, DEMs) were routed through ArcGIS Pro, Blender, and Photoshop before being integrated into Adobe Illustrator. The final output is an expansive, wide-format composition demonstrating a seamless fusion of spatial data processing, 3D visualization, and commercial graphic design.</p>
+                </div>
+            </div>
+
+            <div class="table-col">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Core Competency</th>
+                            <th>Detailed Skill Statement</th>
+                            <th>Cartographic Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3D Scene Composition</td>
+                            <td>Mastered the conceptualization of geographic scenes, manipulating camera and lighting pitch, direction, and elevation.</td>
+                            <td>Alters how scale is perceived, creating immersive, human-centric views of massive topographies.</td>
+                        </tr>
+                        <tr>
+                            <td>Software Pipeline</td>
+                            <td>Executed a multi-tiered workflow, seamlessly transferring spatial data across Pro, Photoshop, and Illustrator.</td>
+                            <td>Proves advanced technical adaptability, using specialized strengths of disparate software packages to produce a multilayered final product.</td>
+                        </tr>
+                        <tr>
+                            <td>Raster Management</td>
+                            <td>Integrated massive environmental datasets, ensuring outputs met strict 220 ppi print production standards.</td>
+                            <td>Ensures multi-gigabyte spatial imagery does not pixelate when subjected to offset printing.</td>
+                        </tr>
+                        <tr>
+                            <td>Horizon Extrapolation</td>
+                            <td>Managed geographic coverage areas to ensure data layers extended adequately to establish an unbroken horizon line.</td>
+                            <td>Maintains the optical illusion of an endless physical world, preventing disconnected map models.</td>
+                        </tr>
+                        <tr>
+                            <td>Vector Integration</td>
+                            <td>Engineered press-ready layouts in Illustrator, overlaying precise vector networks, typography, and basemap features.</td>
+                            <td>Synthesizes the realism of photographic rasters with the mathematical precision of vector cartography.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Spatial-Temporal Animation</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables */
+        :root {
+            --primary-color: #1a1a24; /* Dark slate */
+            --accent-color: #cc22e6;  /* Purple to match the theme of the timescale map*/
+            --text-light: #f4f6f7;
+            --text-dark: #2c3e50;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset */
+        @page {
+            size: 11in 17in; /* Tabloid Portrait */
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 12pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid (Vertical Stack) */
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            height: 16in; /* 17in - 1in margins */
+            width: 10in;  /* 11in - 1in margins */
+            margin: auto;
+            background-color: #e8ecef; /* Light gray base for the lower half */
+        }
+
+        /* 2.4 Video Asset Styling (Optimized for 16:9) */
+        .hero-section {
+            width: 100%;
+            height: 5.625in; /* Precisely calculated 16:9 ratio based on 10in width */
+            background-color: #000000;
+            border-bottom: 6pt solid var(--accent-color);
+        }
+
+        .hero-map {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video fills the block beautifully */
+            object-position: center;
+        }
+
+        /* 2.5 Lower Content Split Area */
+        .content-section {
+            display: flex;
+            flex-direction: row;
+            height: calc(100% - 5.625in); /* Takes up the remaining vertical space */
+            width: 100%;
+        }
+
+        /* 2.5.1 Left Sidebar (Narrative) */
+        .sidebar {
+            width: 40%;
+            height: 100%;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 24pt;
+            display: flex;
+            flex-direction: column;
+            gap: 20pt;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            font-size: 24pt;
+            text-transform: uppercase;
+            line-height: 1.1;
+            border-bottom: 3pt solid var(--accent-color);
+            padding-bottom: 8pt;
+        }
+
+        .overview {
+            text-align: justify;
+            font-size: 11pt;
+            line-height: 1.6;
+        }
+
+        /* 2.5.2 Right Area (Skills) */
+        .skills-area {
+            width: 60%;
+            height: 100%;
+            padding: 24pt;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically centers the skills */
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16pt;
+        }
+
+        /* 2.6 Skill Item Styling (Inverted for light background) */
+        .skill-item {
+            background-color: #FFFFFF;
+            padding: 12pt 16pt;
+            border-left: 4pt solid var(--accent-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Adds a subtle drop shadow */
+        }
+
+        .skill-title {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 12.5pt;
+            margin-bottom: 4pt;
+        }
+
+        .skill-desc {
+            font-size: 10.5pt;
+            color: var(--text-dark);
+            margin-bottom: 6pt;
+        }
+
+        .skill-impl {
+            font-size: 9.5pt;
+            font-style: italic;
+            color: #5d6d7e;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="page-container">
+        
+        <!-- 3.1 Hero Video Area (Full Width, 16:9 Ratio) -->
+        <div class="hero-section">
+            <video class="hero-map" autoplay loop muted playsinline>
+                <source src="A3_DMS.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <!-- 3.2 Lower Content Split -->
+        <div class="content-section">
+            
+            <!-- 3.2.1 Sidebar Overview (40% width) -->
+            <div class="sidebar">
+                <h1>Spatial-Temporal Animation</h1>
+                <div class="overview">
+                    <p>This project explored the visualization of geographic change over time, requiring the creation of a compelling cartographic animation in ArcGIS Pro. The objective was to move beyond static mapping to effectively illustrate trends, movement, and data phenomena over time.</p>
+                    <br>
+                    <p>The workflow required rigorous preparation of time-enabled feature layers, careful selection of coordinate reference systems, and the configuration of animation keyframes. Pacing, frame rates, and dynamic text overlays were precisely engineered to engage viewers without causing visual fatigue.</p>
+                    <br>
+                    <p>The dataset chosen for this project was sourced from ACLED and focused on civil unrest in North America from 2019-2026. Viewed month by month, the animation reveals the cyclical nature of civil unrest in line with the election cycle, as well as flashpoints where definitive events shape the course of history.</p>
+                </div>
+            </div>
+
+            <!-- 3.2.2 Skills Area (60% width) -->
+            <div class="skills-area">
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-title">Time-Enabled Visualization</div>
+                        <div class="skill-desc">Configured temporal parameters on feature layers to animate geospatial phenomena across specific intervals.</div>
+                        <div class="skill-impl">Reveals hidden temporal patterns, velocities, and movement that static maps cannot convey.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Keyframe Synchronization</div>
+                        <div class="skill-desc">Engineered smooth transitions, pacing, and frame rates to optimize viewer engagement.</div>
+                        <div class="skill-impl">Prevents viewer fatigue and ensures complex changes over time are easily digestible.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Temporal Data Structuring</div>
+                        <div class="skill-desc">Cleaned and formatted datasets to ensure strict compatibility with ArcGIS Pro's time slider mechanics.</div>
+                        <div class="skill-impl">Guarantees accurate sequential rendering of data frames without technical errors.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Dynamic Layout Design</div>
+                        <div class="skill-desc">Integrated dynamic text elements, including self-updating time stamps and customized contextual legends.</div>
+                        <div class="skill-impl">Provides critical contextual wayfinding for the viewer throughout the animation lifecycle.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Multimedia Export Optimization</div>
+                        <div class="skill-desc">Exported finalized sequences into optimized MP4 and GIF formats maintaining high cartographic fidelity.</div>
+                        <div class="skill-impl">Ensures the final product is highly accessible and easily shared across digital platforms.</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

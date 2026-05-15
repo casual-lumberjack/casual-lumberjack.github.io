@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: H3 in QGIS</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables 
+           Defines the core color palette and typography. */
+        :root {
+            --primary-color: #2b1d3d; /* Deep Indigo */
+            --accent-color: #f1c40f;  /* Gold/Yellow for heatmap association */
+            --text-dark: #2c3e50;
+            --text-light: #fdfefe;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset 
+           Ensures an 11x17 Tabloid output with 0.5in margins. */
+        @page {
+            size: 11in 17in;
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            font-size: 11.5pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid 
+           2-column layout. Left column holds 3 maps. Right holds text/skills. */
+        .page-container {
+            display: grid;
+            grid-template-columns: 45% 50%;
+            justify-content: space-between;
+            height: 16in; 
+            width: 10in;  
+            margin: auto;
+        }
+
+        /* 2.4 Image Asset Styling */
+        .maps-column {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            gap: 15pt;
+        }
+
+        .hero-map {
+            width: 100%;
+            height: calc(33.333% - 10pt);
+            object-fit: cover;
+            object-position: center;
+            border: 2pt solid var(--primary-color);
+            background-color: #f4f6f7;
+        }
+
+        /* 2.5 Typography & Content Blocks */
+        .content-column {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 20pt;
+            padding-top: 5pt;
+        }
+
+        .writeup-container {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 20pt;
+            display: flex;
+            flex-direction: column;
+            gap: 12pt;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            font-size: 22pt;
+            text-transform: uppercase;
+            border-bottom: 2pt solid var(--accent-color);
+            padding-bottom: 6pt;
+            line-height: 1.2;
+        }
+
+        .overview {
+            font-size: 11pt;
+            text-align: justify;
+        }
+
+        /* 2.6 Skill Table Styling */
+        .table-container {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11.5pt;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12pt 10pt;
+            border-bottom: 1pt solid #ddd;
+            vertical-align: top;
+        }
+
+        th {
+            font-family: var(--font-heading);
+            color: var(--text-light);
+            background-color: var(--primary-color);
+            font-size: 12pt;
+        }
+        
+        td:first-child {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--accent-color);
+            width: 22%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="page-container">
+        
+        <!-- 3.1 Maps Column (Left) -->
+        <div class="maps-column">
+            <!-- 3.1.1 Hexbin -->
+            <img class="hero-map" src="Hexbin_DMS.png" alt="H3 Hexbin Analysis">
+            <!-- 3.1.2 Hotspot -->
+            <img class="hero-map" src="Hotspot_DMS.png" alt="H3 Hotspot Analysis">
+            <!-- 3.1.3 Heatmap -->
+            <img class="hero-map" src="Heatmap_DMS.png" alt="H3 Heatmap Analysis">
+        </div>
+        
+        <!-- 3.2 Content Column (Right) -->
+        <div class="content-column">
+            <!-- 3.2.1 Textual Content Writeup -->
+            <div class="writeup-container">
+                <h1>H3 in QGIS: Spatial Trends</h1>
+                <div class="overview">
+                    <p>This project focused on advanced geovisualization techniques within an open-source environment, specifically utilizing QGIS to identify and communicate spatial distributions. The objective was to transform dense, overlapping point data into coherent visual narratives that expose underlying geographic phenomena.</p>
+                    <br>
+                    <p>Through the rigorous application of Heatmap, Hotspot, and Hexbin (H3) rendering strategies, USGS earthquake data was distilled into accessible cartographic products. The workflow required extensive exploratory data analysis, the implementation of data reduction methodologies, and the optimization of final map layouts to support data-driven storytelling.</p>
+                </div>
+            </div>
+
+            <!-- 3.2.2 Skill Statements Table -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Core Competency</th>
+                            <th>Detailed Skill Statement</th>
+                            <th>Cartographic Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Advanced Geovisualization</td>
+                            <td>Applied heatmap, hotspot, and hexbin techniques to transform dense spatial data into clear geographic trends.</td>
+                            <td>Facilitates the rapid identification of critical density zones for policy-makers and analysts.</td>
+                        </tr>
+                        <tr>
+                            <td>Data Reduction Strategy</td>
+                            <td>Cleaned and formatted raw datasets to eliminate noise prior to executing spatial processing algorithms.</td>
+                            <td>Ensures cartographic outputs reflect accurate, meaningful phenomena rather than visual data clutter.</td>
+                        </tr>
+                        <tr>
+                            <td>Spatial Trend Analysis</td>
+                            <td>Interpreted complex spatial distributions and attribute variables to craft a coherent, logic-driven narrative.</td>
+                            <td>Translates abstract geometric data into actionable intelligence and a cohesive data story.</td>
+                        </tr>
+                        <tr>
+                            <td>Open-Source GIS Workflows</td>
+                            <td>Executed spatial analysis and advanced layout design entirely within the QGIS software ecosystem.</td>
+                            <td>Demonstrates technical adaptability and proficiency outside of standard proprietary software environments.</td>
+                        </tr>
+                        <tr>
+                            <td>Technical Communication</td>
+                            <td>Synthesized analytical findings into a professional video presentation detailing the cartographic methodology.</td>
+                            <td>Proves the ability to articulate complex GIS processing workflows to diverse professional audiences.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

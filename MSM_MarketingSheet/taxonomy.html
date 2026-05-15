@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Multi-Scale Map Taxonomy</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables */
+        :root {
+            --primary-color: #2c3e50; 
+            --accent-color: #1abc9c;  /* Cool teal to match the arctic/alpine theme */
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset */
+        @page {
+            size: 17in 11in; /* Tabloid Landscape */
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            font-size: 12pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid (Landscape) */
+        .landscape-container {
+            display: grid;
+            grid-template-rows: 60% 40%;
+            height: 10in; 
+            width: 16in;  
+            margin: auto;
+            gap: 20pt;
+        }
+
+        /* 2.4 Image Asset Styling */
+        .hero-map {
+            grid-row: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center top;
+            border-bottom: 6pt solid var(--primary-color);
+        }
+
+        /* 2.5 Typography & Content Blocks */
+        .content-block {
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: 35% 65%;
+            gap: 30pt;
+        }
+
+        .overview-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            font-size: 24pt;
+            text-transform: uppercase;
+            margin-bottom: 12pt;
+            border-bottom: 3pt solid var(--accent-color);
+            padding-bottom: 6pt;
+            line-height: 1.1;
+        }
+
+        .overview {
+            text-align: justify;
+            font-size: 10.5pt;
+        }
+
+        /* 2.6 Skill Table Styling */
+        .table-col {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8pt;
+            border-bottom: 1pt solid #ddd;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-size: 11pt;
+        }
+        
+        td:first-child {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--accent-color);
+            width: 22%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="landscape-container">
+        
+        <!-- 3.1 Hero Image -->
+        <img class="hero-map" src="MS_Map_Taxonomy_DMS.png" alt="Multi-Scale Map Taxonomy Chart">
+        
+        <!-- 3.2 Textual Content & Skills Grid -->
+        <div class="content-block">
+            
+            <div class="overview-col">
+                <h1>Multi-Scale Map Taxonomy</h1>
+                <div class="overview">
+                    <p>This project involved engineering a comprehensive multi-scale taxonomy chart for a Canadian Arctic Topographic and Physical Geography Basemap. Anticipating rapid regional changes driven by climate shifts and economic development, the objective was to design a scalable, universally applicable foundation that could integrate seamlessly with future specialized overlays, such as bathymetry or mineral surveys.</p>
+                    <br>
+                    <p>The workflow required establishing strict display hierarchies for variable zoom levels, prioritizing human-recognizable scale intervals over exacting pixel densities. A specialized cool, muted color palette inspired by alpine cartography was developed to ensure immediate geographic recognition and thematic cohesion across all scales.</p>
+                </div>
+            </div>
+
+            <div class="table-col">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Core Competency</th>
+                            <th>Detailed Skill Statement</th>
+                            <th>Cartographic Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Multi-Scale Hierarchy Design</td>
+                            <td>Calculated and assigned specific display hierarchies across variable zoom levels, prioritizing rounded, human-readable scales.</td>
+                            <td>Optimizes the user experience by providing logical detail transitions without overwhelming the map viewer.</td>
+                        </tr>
+                        <tr>
+                            <td>Thematic Color Engineering</td>
+                            <td>Developed a specialized cool and muted color palette reflecting the physical geography of the Arctic environment.</td>
+                            <td>Reinforces the thematic location of the basemap intuitively while ensuring strong contrast for overlaid data.</td>
+                        </tr>
+                        <tr>
+                            <td>Symbol Standardization</td>
+                            <td>Designed simple, universally recognizable vector symbology optimized for rapid interpretation across various media.</td>
+                            <td>Ensures the core basemap remains legible and unobtrusive when utilized as a foundation for specialized mapping.</td>
+                        </tr>
+                        <tr>
+                            <td>Scalable Vector Generation</td>
+                            <td>Prepared and structured geographic features to support seamless transition and rendering across progressive web environments.</td>
+                            <td>Guarantees that complex vector geometries simplify correctly as the user zooms out, maintaining performance.</td>
+                        </tr>
+                        <tr>
+                            <td>Taxonomic Organization</td>
+                            <td>Categorized complex topography into a logical, flexible framework capable of supporting modular future data integration.</td>
+                            <td>Creates a resilient cartographic architecture that can adapt to changing geographic data without requiring total redesigns.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

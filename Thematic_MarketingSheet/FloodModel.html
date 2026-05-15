@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stewiacke Flood Model • Damian M. St-Jean</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f8f6; 
+      --surface: #fdfdfb; 
+      --text-main: #1a2421; 
+      --text-muted: #5e7067;
+      --brand: #0b2416; 
+      --brand-hover: #16472c;
+      --accent: #2980b9; /* Kept the water blue accent for the flood theme */
+      --border: #dce0dd;
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: "Libre Baskerville", Cambria, Georgia, serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .btn, .nav-text {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* --- Navigation Bar --- */
+    .top-bar {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      color: var(--accent);
+      transform: translateX(-4px);
+    }
+
+    /* --- Layout Container --- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    /* --- Page Header --- */
+    .page-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 2.8rem;
+      color: var(--brand);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .page-header p {
+      font-family: "Montserrat", sans-serif;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* --- Main Content Grid --- */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+
+    .main-narrative h2 {
+      font-size: 1.8rem;
+      color: var(--brand);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .main-narrative h3 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .main-narrative p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* --- Findings Cards --- */
+    .findings-card {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .findings-card h4 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .findings-card p {
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+
+    /* --- Sidebar / Skills Table --- */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .action-box {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      text-align: center;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      background: var(--brand);
+      color: white;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .btn:hover { background: var(--brand-hover); }
+    .btn-outline {
+      background: transparent;
+      color: var(--brand);
+      border: 2px solid var(--brand);
+    }
+    .btn-outline:hover { background: var(--brand); color: white; }
+
+    .skills-box {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .skills-box h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--brand);
+    }
+
+    .skill-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-item strong {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .skill-item p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
+      .content-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .page-header h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <div class="top-bar">
+    <a href="../PortfolioDMS.html#portfolio" class="back-btn">
+      &larr; Back to Spatial Portfolio
+    </a>
+    <span class="nav-text" style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">PROJECT DOSSIER</span>
+  </div>
+
+  <main class="container">
+    
+    <!-- Header -->
+    <header class="page-header">
+      <h1>2D Flood Hazard Modeling: Stewiacke River</h1>
+      <p>Hydrodynamic Simulation & Vulnerability Assessment</p>
+    </header>
+
+
+    <!-- Content Layout -->
+    <div class="content-grid">
+      
+      <!-- Left Column: Narrative & Findings -->
+      <div class="main-narrative">
+        <h2>Executive Summary</h2>
+        <p>Serving as the capstone for the Applied Thematic Project, this model addresses the complex hydrodynamic hazards of the Stewiacke River. Driven by climate change and sea-level rise, the confluence of downstream river flow and upstream Bay of Fundy tides requires advanced two-dimensional (2D) simulation rather than traditional flat-water 1D mapping to accurately predict municipal flood vulnerabilities.</p>
+        
+        <p>The technical workflow bridged geospatial design and civil engineering. It involved synthesizing 1-meter LiDAR, soil infiltration data, and tidal boundaries in ArcGIS Pro, followed by statistical frequency analysis in HEC-SSP. The final 15-meter calculation mesh was iteratively debugged and simulated in HEC-RAS 6.6, producing critical thematic maps intended for emergency response and municipal town planning.</p>
+
+        <h3>Vulnerability Assessment Findings</h3>
+        <p>The successful completion of the HEC-RAS 2D simulation yielded a comprehensive 100-year predictive flood model (adjusted for anticipated mean sea level rise and peak astronomical tides). The outputs highlighted several distinct vulnerability zones requiring immediate municipal attention:</p>
+
+        <div class="findings-card">
+          <h4>1. Regional Logistical Isolation</h4>
+          <p>The model indicates that both northbound and southbound routes on Highway 102 and Highway 2 become completely flooded. The town effectively becomes an island, severely straining local municipal resources and necessitating reliance on internal emergency response capabilities.</p>
+        </div>
+
+        <div class="findings-card">
+          <h4>2. Secondary Wastewater Hazards</h4>
+          <p>Three municipal sewage settling ponds are located directly within the primary flood zone. When the river breaches its banks, these facilities will introduce hazardous biological waste into the floodwaters, elevating the risk profile to a hazardous materials scenario.</p>
+        </div>
+
+        <div class="findings-card">
+          <h4>3. Severe Residential Inundation</h4>
+          <p>The Low Tide Road Trailer Park presents the most critical vulnerability. The model projects dwellings will be submerged in up to 1.16 meters of water, creating a serious risk of buoyancy. Furthermore, all access roads to this park become fully inundated, severely hindering evacuation and rescue efforts.</p>
+        </div>
+
+        <h3>Project Lifecycle & Resilience</h3>
+        <p>Beyond technical execution, the project lifecycle relied on rigorous collaboration, including weekly peer critiques, design sample submissions, and structured workplans. A draft iteration was subjected to client review, ensuring the final emergency mapping series strictly aligns with municipal planning requirements and creates a resilient, reproducible framework for future hazard assessments.</p>
+      </div>
+
+      <!-- Right Column: Actions & Skills -->
+      <div class="sidebar">
+        
+        <!-- Action / Download Box -->
+        <div class="action-box">
+          <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--text-main);">Project Deliverables</h3>
+          <a href="Stewiacke Flood Model.pdf" target="_blank" class="btn">View High-Res Map (PDF)</a>
+          <a href="Stewiacke Flood Model - Technical Report.pdf" target="_blank" class="btn btn-outline">Read Technical Report (PDF)</a>
+        </div>
+
+        <!-- Core Competencies Table / List -->
+        <div class="skills-box">
+          <h3>Core Competencies</h3>
+          
+          <div class="skill-item">
+            <strong>Advanced Thematic Design</strong>
+            <p>Transforms raw simulation output into highly legible, actionable thematic maps for municipal policymakers, meeting precise cartographic publishing standards.</p>
+          </div>
+
+          <div class="skill-item">
+            <strong>Hydrodynamic Simulation (HEC-RAS)</strong>
+            <p>Evaluated and implemented industry-standard software to calculate the physics of water depth, speed, and directional flow over a continuous 2D grid.</p>
+          </div>
+
+          <div class="skill-item">
+            <strong>Geospatial Data Engineering</strong>
+            <p>Synthesized disparate datasets (WebTide ocean data, historical WSC river flows, continuous surface friction codes) within ArcGIS Pro to create an accurate digital twin of the landscape.</p>
+          </div>
+
+          <div class="skill-item">
+            <strong>Iterative Python Automation</strong>
+            <p>Employed Python scripting to automate culvert data entry and resolved critical FORTRAN array misalignments, demonstrating advanced technical troubleshooting.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem;">
+    <small style="font-family: 'Montserrat', sans-serif; color: var(--text-muted);">© 2026 Damian M. St-Jean. Building clarity from spatial complexity.</small>
+  </footer>
+
+</body>
+</html>

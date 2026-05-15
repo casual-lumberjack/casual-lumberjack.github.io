@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: AGOL Dashboard</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables */
+        :root {
+            --primary-color: #2c3e50; 
+            --accent-color: #3498db;  
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset 
+           Ensures 17x11 Tabloid Landscape output. */
+        @page {
+            size: 17in 11in; 
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            font-size: 12pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid (Landscape) */
+        .landscape-container {
+            display: grid;
+            grid-template-rows: 60% 40%;
+            height: 10in; 
+            width: 16in;  
+            margin: auto;
+            gap: 20pt;
+        }
+
+        /* 2.4 Image Asset Styling */
+        .hero-map {
+            grid-row: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center top;
+            border-bottom: 6pt solid var(--primary-color);
+        }
+
+        /* 2.5 Typography & Content Blocks */
+        .content-block {
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: 35% 65%;
+            gap: 30pt;
+        }
+
+        .overview-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            font-size: 24pt;
+            text-transform: uppercase;
+            margin-bottom: 12pt;
+            border-bottom: 3pt solid var(--accent-color);
+            padding-bottom: 6pt;
+            line-height: 1.1;
+        }
+
+        .overview {
+            text-align: justify;
+            font-size: 10.5pt;
+        }
+
+        /* 2.6 Skill Table Styling */
+        .table-col {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10pt;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8pt;
+            border-bottom: 1pt solid #ddd;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-size: 11pt;
+        }
+        
+        td:first-child {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--accent-color);
+            width: 22%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="landscape-container">
+        
+        <!-- 3.1 Hero Image -->
+        <img class="hero-map" src="Screenshot 2026-04-14 191655.png" alt="ArcGIS Online Dashboard and StoryMap">
+        
+        <!-- 3.2 Textual Content & Skills Grid -->
+        <div class="content-block">
+            
+            <div class="overview-col">
+                <h1>Interactive AGOL Analytics</h1>
+                <div class="overview">
+                    <p>This project involved the development of an engaging, on-demand visual analytics platform using the ArcGIS Online (AGOL) ecosystem. The core deliverable was a highly customized ArcGIS Dashboard, embedded within a narrative-driven ArcGIS StoryMap, designed to facilitate user-led spatial data exploration.</p>
+                    <br>
+                    <p>The chosen NRCan dataset covered wildfires across Canada from 1972-2025, presenting a comprehensive view of fire patterns and spatial trends. The challenge was how to effectively filter and display the data in a meaningful way with the tools available.</p>
+                    <br>
+                    <p>The workflow required sourcing cloud-based feature layers, configuring dynamic Web Maps with specialized symbology, and employing interactive dashboard elements in a meaningful way. This integrated approach prioritized user experience, ensuring that complex spatial relationships were communicated clearly to non-technical audiences.</p>
+                </div>
+            </div>
+
+            <div class="table-col">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Core Competency</th>
+                            <th>Detailed Skill Statement</th>
+                            <th>Cartographic Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Interactive Web Mapping</td>
+                            <td>Configured dynamic Web Maps utilizing Arcade expressions, customized pop-ups, and scale-dependent rendering.</td>
+                            <td>Empowers end-users to intuitively navigate, query, and interact with live spatial data.</td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard Engineering</td>
+                            <td>Designed an ArcGIS Dashboard featuring synchronized charts, gauges, and location-based filters.</td>
+                            <td>Transforms static cartography into an on-demand, interactive visual analytics platform.</td>
+                        </tr>
+                        <tr>
+                            <td>Narrative Data Storytelling</td>
+                            <td>Structured a compelling narrative using ArcGIS StoryMaps to contextualize dashboard analytics.</td>
+                            <td>Bridges the gap between complex spatial analysis results and public comprehension.</td>
+                        </tr>
+                        <tr>
+                            <td>Cloud Data Management</td>
+                            <td>Sourced, hosted, and managed custom feature layers within the cloud-based ArcGIS Online environment.</td>
+                            <td>Ensures reliable data delivery and seamless integration across multiple web applications.</td>
+                        </tr>
+                        <tr>
+                            <td>UI/UX Cartographic Design</td>
+                            <td>Applied rigorous design principles to interactive elements, prioritizing an accessible and intuitive interface.</td>
+                            <td>Minimizes cognitive load, ensuring visual widgets do not overwhelm the core spatial data.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

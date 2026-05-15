@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Statistical Infographics</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables */
+        :root {
+            --primary-color: #1A252C; 
+            --accent-color: #3498DB;  
+            --text-light: #ECF0F1;
+            --text-dark: #2C3E50;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset */
+        @page {
+            size: 11in 17in; /* Tabloid Portrait */
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 12pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid (Asymmetrical) */
+        .page-container {
+            display: flex;
+            height: 16in; /* Tabloid height minus margins */
+            width: 10in;  /* Tabloid width minus margins */
+            margin: auto;
+            background-color: #d1eaf2;
+        }
+
+        /* 2.4 Image Asset Styling */
+        .hero-section {
+            width: 65%;
+            height: 100%;
+            padding-right: 20pt;
+            display: flex;
+            align-items: center; /* Centers the A1 image vertically in the 16in space */
+            justify-content: center;
+        }
+
+        .hero-map {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            object-position: center;
+        }
+
+        /* 2.5 Typography & Sidebar Content Blocks */
+        .sidebar {
+            width: 35%;
+            height: 100%;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 24pt;
+            display: flex;
+            flex-direction: column;
+            gap: 20pt;
+        }
+
+        h1, h2 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+        }
+
+        h1 {
+            font-size: 22pt;
+            text-transform: uppercase;
+            line-height: 1.2;
+            border-bottom: 3pt solid var(--accent-color);
+            padding-bottom: 8pt;
+        }
+
+        .overview {
+            text-align: justify;
+            font-size: 11pt;
+        }
+
+        /* 2.6 Skill Table Styling (Vertical for Sidebar) */
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16pt;
+        }
+
+        .skill-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 12pt;
+            border-left: 4pt solid var(--accent-color);
+        }
+
+        .skill-title {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 12pt;
+            margin-bottom: 4pt;
+        }
+
+        .skill-desc {
+            font-size: 10pt;
+            margin-bottom: 6pt;
+        }
+
+        .skill-impl {
+            font-size: 9pt;
+            font-style: italic;
+            color: #BDC3C7;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="page-container">
+        
+        <!-- 3.1 Hero Image Area (65%) -->
+        <div class="hero-section">
+            <img class="hero-map" src="./img/infographic.png" alt="Statistical Infographic Project Screenshot">
+        </div>
+        
+        <!-- 3.2 Sidebar Textual Content Area (35%) -->
+        <div class="sidebar">
+            <h1>Statistical Infographics</h1>
+            <div class="overview">
+                <p>This project represents a highly advanced synthesis of thematic cartography, quantitative data visualization, and commercial graphic design. The core challenge involved communicating dense, complex datasets through a singular, cohesive, multi-element poster.</p>
+                <br>
+                <p>This infographic tells the story of Canada's place in the clean energy era through a combination of maps and statistical visualizations. The layout was rigorously executed in Adobe Illustrator, restricting typographic variance and engineering a press-ready CMYK document suitable for large-format commercial printing.</p>
+            </div>
+
+            <!-- 3.3 Skill Statements -->
+            <div class="skill-list">
+                <div class="skill-item">
+                    <div class="skill-title">Cartogram Generation</div>
+                    <div class="skill-desc">Generated customized cartograms, purposefully distorting boundaries to visualize statistical variables.</div>
+                    <div class="skill-impl">Forces viewer to confront data spatially, making abstract disparities visually apparent.</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Comprehensive Visualization</div>
+                    <div class="skill-desc">Designed and integrated diverse statistical graphics into a cohesive narrative structure.</div>
+                    <div class="skill-impl">Prevents cognitive overload by utilizing varied visual metaphors for lay audiences.</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Typographic Hierarchy</div>
+                    <div class="skill-desc">Applied rigorous design principles, restricting the design to a maximum of three type families.</div>
+                    <div class="skill-impl">Instills strict discipline, ensuring text guides the eye without contributing to visual clutter.</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Narrative Formulation</div>
+                    <div class="skill-desc">Formulated a distinct theme, blending statistical data and imagery into a unified tool.</div>
+                    <div class="skill-impl">Transforms raw data points into a compelling visual argument tailored to the current geopolitical context.</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-title">Pre-Press Formatting</div>
+                    <div class="skill-desc">Engineered final files for commercial production (A1, CMYK, bleeds, printer's marks).</div>
+                    <div class="skill-impl">Guarantees flawless reproduction of rich colors and edge-to-edge graphics in physical media.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Visualizing Terrain</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables 
+           Defines the core color palette and typography for the document. */
+        :root {
+            --primary-color: #3b5998; 
+            --accent-color: #4b6b3e;  
+            --text-dark: #222222;
+            --text-light: #ffffff;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset 
+           Ensures an 11x17 Tabloid output with 0.5in margins during PDF export. */
+        @page {
+            size: 11in 17in;
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            font-size: 11.5pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid 
+           Utilizes a flex column to stack the gallery row on top of the text block. */
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            height: 16in; /* 17in - 1in total vertical margins */
+            width: 10in;  /* 11in - 1in total horizontal margins */
+            margin: auto;
+            gap: 20pt;
+        }
+
+        /* 2.4 Image Asset Row 
+           Creates a 3-column gallery for the 6.5 x 9.5 map exports. */
+        .map-gallery {
+            display: flex;
+            gap: 15pt;
+            height: 35%; /* Restricts images to top portion to preserve text space */
+            width: 100%;
+        }
+
+        .map-pane {
+            flex: 1;
+            height: 100%;
+            background-color: #fafafa;
+            border: 1pt solid #ddd;
+            border-bottom: 4pt solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-pane img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images fill their flex containers completely */
+        }
+
+        /* 2.5 Typography & Content Blocks 
+           Handles the lower 65% of the document. */
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16pt;
+            height: 65%;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+            font-size: 24pt;
+            text-transform: uppercase;
+            border-bottom: 3pt solid var(--primary-color);
+            padding-bottom: 6pt;
+        }
+
+        .overview {
+            column-count: 2;
+            column-gap: 24pt;
+            text-align: justify;
+            font-size: 11pt;
+        }
+
+        /* 2.6 Skill Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11pt;
+            margin-top: 10pt;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10pt 10pt;
+            border-bottom: 1pt solid #ddd;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-family: var(--font-heading);
+            font-size: 12pt;
+        }
+        
+        td:first-child {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--primary-color);
+            width: 22%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="page-container">
+        
+        <!-- 3.1 Map Gallery Row 
+             3 side-by-side panes scaling proportionally. -->
+        <div class="map-gallery">
+            <div class="map-pane">
+                <img src="./img/Lab7_Lidar_DMS.png" alt="Terrain Visualization 1">
+            </div>
+            <div class="map-pane">
+                <img src="./img/Imhoff.png" alt="Terrain Visualization 2">
+            </div>
+            <div class="map-pane">
+                <img src="./img/Composite_Hillshade.png" alt="Terrain Visualization 3">
+            </div>
+        </div>
+        
+        <!-- 3.2 Textual Content & Table -->
+        <div class="text-content">
+            <h1>Visualizing Terrain & 3D Representations</h1>
+            <div class="overview">
+                <p>The Visualization of Terrain Relief Labs represent a multi-week exploration into the physical and digital representation of topography to create a wide variety of cartographic outputs. The core objective was to transcend flat, uninspiring aesthetics of default GIS hillshading by manually manipulating light, shadow, and elevation data across ArcGIS Pro, Adobe Photoshop, and Blender.</p>
+                <p>Advanced methodologies included generating grayscale outputs with varying azimuth and altitude, utilizing specific blending modes (like Difference) to extract deep shadows, and employing posterization for illuminated ridgelines. The workflow also extended to manipulating 16-bit DEM heightmaps in open-source CGI environments for cinematic atmospheric rendering, and utilizing raw LiDAR point clouds (LAZ files) with binning interpolation to map hyper-localized relief.</p>
+            </div>
+
+            <!-- 3.3 Skill Statements Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Core Competency</th>
+                        <th>Detailed Skill Statement</th>
+                        <th>Cartographic Implication</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Composite Hillshading</td>
+                        <td>Mastered the integration of ArcGIS Pro and Adobe Photoshop to build multi-layered composite hillshades, strategically manipulating transparency and blending modes.</td>
+                        <td>Elevates scientific elevation data into visually stunning, hyper-realistic terrain maps that communicate elevation intuitively.</td>
+                    </tr>
+                    <tr>
+                        <td>Feature Extraction</td>
+                        <td>Applied advanced image processing techniques to isolate shadow layers via difference blending and utilized posterization to generate ridgeline highlights.</td>
+                        <td>Allows absolute artistic control over the landscape, selectively emphasizing structural geology or masking irrelevant topography.</td>
+                    </tr>
+                    <tr>
+                        <td>CGI Terrain Rendering</td>
+                        <td>Leveraged Blender to generate cinematic shaded relief, applying complex illumination arrays, surface texturing, and non-color data processing.</td>
+                        <td>Introduces photorealistic atmospheric effects, ray-traced shadows, and ambient occlusion to 2D map design.</td>
+                    </tr>
+                    <tr>
+                        <td>LiDAR Processing</td>
+                        <td>Executed end-to-end processing of high-resolution LiDAR data, utilizing binning interpolation to generate precision DEMs.</td>
+                        <td>Proves ability to handle massive point-cloud datasets and extract usable surface models for localized analysis.</td>
+                    </tr>
+                    <tr>
+                        <td>Illumination Analysis</td>
+                        <td>Demonstrated deep understanding of lighting theory, deliberately altering altitude and azimuth parameters to model effects on continuous topographic surfaces.</td>
+                        <td>Ensures simulated sun angles correctly emphasize terrain features without creating optical illusions like relief inversion.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

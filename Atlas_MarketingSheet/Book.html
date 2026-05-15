@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.0 Document Setup -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Atlas Book Production</title>
+    
+    <!-- 2.0 CSS Styles -->
+    <style>
+        /* 2.1 CSS Variables */
+        :root {
+            --primary-color: #2c3e50; 
+            --accent-color: #c0392b;  /* Deep red for print/publishing contrast */
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --font-heading: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-body: 'Merriweather', Georgia, serif;
+        }
+
+        /* 2.2 Print Geometry & Reset */
+        @page {
+            size: 11in 17in; /* Tabloid Portrait */
+            margin: 0.5in;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 12pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #FFFFFF;
+        }
+
+        /* 2.3 Main Layout Grid (Vertical Stack) */
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            height: 16in; 
+            width: 10in;  
+            margin: auto;
+            background-color: #f4f6f7; 
+        }
+
+        /* 2.4 PDF Viewer Styling */
+        .hero-section {
+            width: 100%;
+            height: 6in; /* Provides ample vertical space for reading a booklet */
+            background-color: #e0e0e0;
+            border-bottom: 6pt solid var(--accent-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 2.5 Lower Content Split Area */
+        .content-section {
+            display: flex;
+            flex-direction: row;
+            height: calc(100% - 6in); 
+            width: 100%;
+        }
+
+        /* 2.5.1 Left Sidebar (Narrative) */
+        .sidebar {
+            width: 40%;
+            height: 100%;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 24pt;
+            display: flex;
+            flex-direction: column;
+            gap: 20pt;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            font-size: 24pt;
+            text-transform: uppercase;
+            line-height: 1.1;
+            border-bottom: 3pt solid var(--accent-color);
+            padding-bottom: 8pt;
+        }
+
+        .overview {
+            text-align: justify;
+            font-size: 10.5pt;
+            line-height: 1.6;
+        }
+
+        /* 2.5.2 Right Area (Skills) */
+        .skills-area {
+            width: 60%;
+            height: 100%;
+            padding: 24pt;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16pt;
+        }
+
+        /* 2.6 Skill Item Styling */
+        .skill-item {
+            background-color: #FFFFFF;
+            padding: 12pt 16pt;
+            border-left: 4pt solid var(--accent-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        }
+
+        .skill-title {
+            font-family: var(--font-heading);
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 12.5pt;
+            margin-bottom: 4pt;
+        }
+
+        .skill-desc {
+            font-size: 10.5pt;
+            color: var(--text-dark);
+            margin-bottom: 6pt;
+        }
+
+        .skill-impl {
+            font-size: 9.5pt;
+            font-style: italic;
+            color: #5d6d7e;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3.0 Main Content -->
+    <div class="page-container">
+        
+        <!-- 3.1 Hero PDF Viewer Area (Full Width) -->
+        <div class="hero-section">
+            <!-- Utilizing iframe to embed an interactive PDF booklet -->
+            <iframe class="pdf-viewer" src="Book_DMS.pdf" title="Terrain Atlas Book">
+                <p>Your browser does not support PDFs. <a href="./pdf/terrain-atlas.pdf">Download the PDF</a>.</p>
+            </iframe>
+        </div>
+        
+        <!-- 3.2 Lower Content Split -->
+        <div class="content-section">
+            
+            <!-- 3.2.1 Sidebar Overview -->
+            <div class="sidebar">
+                <h1>Atlas Book Production</h1>
+                <div class="overview">
+                    <p>This project required the conceptualization and physical design of a multi-page atlas showcasing advanced terrain visualizations. Executed primarily in Adobe InDesign, the objective was to master commercial publishing fundamentals, bridging the gap between digital cartographic generation and physical book production.</p>
+                    <br>
+                    <p>The resulting 9"x6" book synthesizes complex spatial rasters (LIDAR, Imhof relief, false color enhancements) into a cohesive, press-ready document. The workflow demanded strict adherence to commercial print specifications, including parent page management, precise bleed settings, and automated pagination.</p>
+                </div>
+            </div>
+
+            <!-- 3.2.2 Skills Area -->
+            <div class="skills-area">
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <div class="skill-title">Multi-Page Layout Architecture</div>
+                        <div class="skill-desc">Engineered facing-page spreads utilizing InDesign Parent Pages to ensure consistent pagination and structural layout.</div>
+                        <div class="skill-impl">Guarantees document uniformity and drastically reduces error rates in lengthy publishing projects.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Pre-Press Raster Management</div>
+                        <div class="skill-desc">Processed high-resolution terrain imagery, enforcing strict 220 ppi standards at 100% scale without interpolation.</div>
+                        <div class="skill-impl">Ensures critical topographic details remain sharp and legible when subjected to physical offset printing.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Typographic Hierarchy & Consistency</div>
+                        <div class="skill-desc">Implemented structured Character and Paragraph Styles to enforce typographic discipline across all descriptive text.</div>
+                        <div class="skill-impl">Allows for global formatting adjustments and maintains a professional, cohesive reading experience.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Commercial Print Specification</div>
+                        <div class="skill-desc">Configured precise trims (9"x6"), 0.25" bleeds, and asymmetrical margins to accommodate physical plasticomb binding.</div>
+                        <div class="skill-impl">Prevents critical map data from being lost to the physical binding process or page trimming.</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-title">Cartographic Packaging</div>
+                        <div class="skill-desc">Compiled final working files into a structured InDesign Project Package, preserving all fonts, links, and high-res assets.</div>
+                        <div class="skill-impl">Ensures seamless handoff to commercial printing facilities without risk of missing critical map layers.</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
